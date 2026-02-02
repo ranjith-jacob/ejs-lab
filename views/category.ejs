@@ -6,10 +6,13 @@
     <title><%= name %></title>
 </head>
 <body>
-    <%- include('./partials/nav') %>
+    <%- include("./partials/nav") %>
     <!-- exercise 3 -->
     <h1>Category: <%= name %> </h1>
-    <p> Testing if filter worked: <%= menuItems %></p>
-    <p> Testing if filter worked: <%= name %></p>
+    <ul>
+        <% menuItems.map((menuItem) => { %>
+            <li><%=menuItem.name%> - $ <%= menuItem.price%> | <%=menuItem.rating%> stars | <%=menuItem.details%> </li>
+        <%}) %>
+    </ul>
 </body>
 </html>

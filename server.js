@@ -48,10 +48,10 @@ const RESTAURANT = {
       details: 'Crispy and lightly seasoned string bean fries, served in a pattern for a fun twist.'
     }
   ]
-}
+};
 
-app.get('/', (req, res) => {
-  res.render('home.ejs', { //exercise 1
+app.get("/", (req, res) => {
+  res.render("home.ejs", { //exercise 1
     restaurant: RESTAURANT //exercise 1
   });
 });
@@ -65,12 +65,15 @@ app.get("/menu", (req, res) => {
 
 //exercise 3
 app.get("/menu/:category", (req, res) => {
+  const category = req.params.category;
+  const menuFilter = RESTAURANT.menu.filter((item) => item.category === category);
+  console.log("Filtered items:", menuFilter);
     res.render("category.ejs", {
-        menuItems: RESTAURANT.menu.filter((item) => item.category),
-        name: req.params.category //! exercise 3 incomplete
+        menuItems: menuFilter,
+        name: category
     });
 });
 
 app.listen(3000, () => {
-  console.log('Listening on port 3000');
+  console.log("Listening on port 3000");
 });
